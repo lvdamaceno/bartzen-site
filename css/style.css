@@ -468,27 +468,3 @@ footer {
     padding: 44px 0;
   }
 }
-
-/* Estilo do botão flutuante */
-.btn-whatsapp {
-  position: fixed; /* Fixa na tela, independente da rolagem */
-  bottom: 25px; /* Distância do fundo */
-  right: 25px; /* Distância da direita (mude para 'left' se quiser na esquerda) */
-  background-color: #25d366; /* Verde oficial do WhatsApp */
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%; /* Deixa redondo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
-  z-index: 1000; /* Garante que fique por cima de todos os outros elementos */
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* Efeito ao passar o mouse por cima (Hover) */
-.btn-whatsapp:hover {
-  background-color: #1ebe57; /* Fica um verde mais escuro */
-  transform: scale(1.1); /* Dá uma leve crescida */
-}
