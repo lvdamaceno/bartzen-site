@@ -34,6 +34,12 @@ function guardarOrigem() {
   CHAVES_UTM.forEach(function (k) {
     if (q.get(k)) o[k] = q.get(k).slice(0, 100);
   });
+  // Links antigos dos QR codes da Casaliv: ?origem=casaliv-<ambiente>-<código>.
+  var antigo = (q.get('origem') || '').trim().slice(0, 100);
+  if (antigo && !o.utm_source) {
+    o.utm_source = antigo.split('-')[0];
+    o.utm_campaign = antigo;
+  }
   if (q.get('gclid')) o.gclid = true;
   if (q.get('fbclid')) o.fbclid = true;
   var temCampanha = Object.keys(o).length > 0;
@@ -171,6 +177,17 @@ fetch('/api/config')
     }
   })
   .catch(function () {});
+
+// ---------- Botões que levam ao formulário: rolam sem pôr #projeto no endereço ----------
+// (um link copiado com #projeto abriria a página já no fim para quem recebe)
+document.querySelectorAll('a[href="#projeto"]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var alvo = document.getElementById('projeto');
+    if (!alvo) return;
+    e.preventDefault();
+    alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 
 // ---------- Formulário ----------
 document.getElementById('whatsapp').addEventListener('input', function (e) {
