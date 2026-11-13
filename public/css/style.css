@@ -468,3 +468,59 @@ footer {
     padding: 44px 0;
   }
 }
+
+/* ---------- Captcha (só aparece com o Turnstile ligado) ---------- */
+.captcha:empty {
+  display: none;
+}
+.captcha {
+  margin: 4px 0 14px;
+  min-height: 65px;
+}
+
+/* ---------- Aviso de cookies (só com GA4 ou Pixel configurado) ---------- */
+#aviso-cookies {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--preto);
+  color: var(--claro);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  line-height: 1.55;
+}
+#aviso-cookies p {
+  margin: 0 0 14px;
+}
+#aviso-cookies a {
+  color: var(--terra);
+}
+.aviso-botoes {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.aviso-botoes button {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 9px 20px;
+  cursor: pointer;
+  border: 1px solid var(--claro-suave);
+  background: transparent;
+  color: var(--claro);
+}
+.aviso-botoes .aviso-sim {
+  background: var(--terra-esc);
+  border-color: var(--terra-esc);
+  color: #fff;
+}
+[hidden] {
+  display: none !important;
+}
