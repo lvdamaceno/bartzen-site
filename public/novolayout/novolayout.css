@@ -2,9 +2,9 @@
    Paleta tirada das fotos dos ambientes: granilite, wengué, freijó e o ocre dos armários e das cadeiras. */
 
 @font-face {
-  font-family: 'Bodoni Moda';
-  src: url('fontes/bodoni-moda.woff2') format('woff2-variations');
-  font-weight: 400 900;
+  font-family: 'Newsreader';
+  src: url('fontes/newsreader.woff2') format('woff2-variations');
+  font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
@@ -25,12 +25,12 @@
   --ocre: #c4932f;
   --ocre-claro: #d9ad52;
   --texto: #2a231e;
-  --texto-suave: #6a5f56;
+  --texto-suave: #4f453d;
   --linha: rgba(31, 25, 21, 0.16);
   --linha-clara: rgba(246, 244, 240, 0.22);
   --erro: #a3402f;
 
-  --serifa: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --serifa: 'Newsreader', Georgia, 'Times New Roman', serif;
   --sans: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
 
   --margem: clamp(20px, 5vw, 72px);
@@ -56,9 +56,9 @@ body {
   background: var(--pedra);
   color: var(--texto);
   font-family: var(--sans);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 img {
@@ -207,17 +207,17 @@ p {
   animation: surgir 1.2s 0.5s ease-out both;
 }
 .hero h1 {
-  font-size: clamp(44px, 6.2vw, 96px);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  font-size: clamp(44px, 6.2vw, 92px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
   max-width: 12ch;
 }
 .hero-texto p {
   max-width: 44ch;
   margin: 28px 0 40px;
   font-size: clamp(17px, 1.4vw, 19px);
-  color: rgba(246, 244, 240, 0.86);
+  color: rgba(246, 244, 240, 0.92);
 }
 @keyframes assentar {
   from {
@@ -262,9 +262,9 @@ p {
 }
 .marca-texto {
   font-family: var(--serifa);
-  font-size: clamp(26px, 3.1vw, 42px);
-  line-height: 1.3;
-  max-width: 30ch;
+  font-size: clamp(25px, 2.7vw, 38px);
+  line-height: 1.38;
+  max-width: 32ch;
   color: var(--wengue);
 }
 .fatos {
@@ -285,7 +285,7 @@ p {
 .fatos dd {
   margin: 2px 0 0;
   color: var(--texto-suave);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* ---------- Ambientes ---------- */
@@ -341,7 +341,7 @@ p {
 }
 .panorama figcaption {
   padding: 14px var(--margem) 0;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--texto-suave);
 }
 
@@ -375,7 +375,7 @@ p {
   color: var(--wengue);
 }
 .lista-ambientes span {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--texto-suave);
 }
 
@@ -412,7 +412,7 @@ p {
   margin-bottom: 12px;
 }
 .processo p {
-  font-size: 16px;
+  font-size: 17px;
   color: var(--texto-suave);
   max-width: 30ch;
 }
@@ -441,7 +441,7 @@ p {
   margin-bottom: 24px;
 }
 .showroom-texto > p {
-  color: rgba(246, 244, 240, 0.78);
+  color: rgba(246, 244, 240, 0.88);
   max-width: 40ch;
 }
 .showroom address {
@@ -503,7 +503,7 @@ p {
 }
 .campo label {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--texto-suave);
   margin-bottom: 4px;
 }
@@ -542,7 +542,7 @@ p {
   gap: 14px;
   align-items: flex-start;
   margin: 8px 0 32px;
-  font-size: 14.5px;
+  font-size: 15.5px;
   line-height: 1.55;
   color: var(--texto-suave);
 }
