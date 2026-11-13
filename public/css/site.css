@@ -61,6 +61,13 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
+/* <picture> só escolhe o formato (WebP ou JPG): quem manda no layout é o <img>. */
+picture {
+  display: contents;
+}
+picture source {
+  display: none;
+}
 img {
   display: block;
   max-width: 100%;
@@ -534,6 +541,22 @@ p {
   border-top: 1px solid var(--linha-clara);
   line-height: 1.75;
 }
+.horario {
+  margin: 0 0 28px;
+  max-width: 340px;
+}
+.horario div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 0;
+}
+.horario dt {
+  color: rgba(246, 244, 240, 0.78);
+}
+.horario dd {
+  margin: 0;
+}
 .contatos {
   list-style: none;
   margin: 0;
@@ -676,6 +699,17 @@ p {
   color: var(--texto-suave);
   max-width: 38ch;
 }
+.sucesso-agora {
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+.botao-whatsapp {
+  background: var(--wengue);
+  color: var(--linho);
+}
+.botao-whatsapp:hover {
+  background: var(--wengue-2);
+}
 
 /* ---------- Rodapé ---------- */
 
@@ -728,6 +762,89 @@ p {
   height: 20px;
   width: auto;
   color: rgba(246, 244, 240, 0.72);
+}
+
+/* ---------- Páginas de texto (política de privacidade, página não encontrada) ---------- */
+body.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.pagina .pagina-texto {
+  flex: 1;
+  width: 100%;
+}
+.pagina .rodape {
+  width: 100%;
+}
+.pagina-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px var(--margem);
+  background: var(--wengue);
+}
+.pagina-topo .logo {
+  width: 132px;
+  height: auto;
+  color: var(--linho);
+}
+.pagina-topo .topo-cta {
+  color: var(--linho);
+}
+.pagina-texto {
+  max-width: calc(68ch + 2 * var(--margem));
+  margin: 0 auto;
+  padding: clamp(56px, 9vw, 112px) var(--margem) clamp(72px, 10vw, 128px);
+}
+.pagina-texto h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.pagina-texto h2 {
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.2;
+  margin: 48px 0 12px;
+  scroll-margin-top: 24px;
+}
+.pagina-texto p,
+.pagina-texto ul {
+  margin: 0 0 16px;
+}
+.pagina-texto ul {
+  padding-left: 1.2em;
+}
+.pagina-texto li {
+  margin-bottom: 6px;
+}
+.pagina-texto a {
+  color: var(--freijo);
+}
+.pagina-texto code {
+  font-family: inherit;
+  font-size: 0.95em;
+  background: rgba(31, 25, 21, 0.06);
+  padding: 1px 5px;
+}
+.pagina-texto .atualizado {
+  color: var(--texto-suave);
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+.pagina-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+  margin-top: 36px !important;
+}
+.pagina-texto .pagina-acoes .botao {
+  color: var(--wengue);
+  text-decoration: none;
 }
 
 /* ---------- Aviso de cookies (montado pelo /js/script.js) ---------- */

@@ -190,93 +190,96 @@ document.querySelectorAll('a[href="#projeto"]').forEach(function (a) {
 });
 
 // ---------- Formulário ----------
-document.getElementById('whatsapp').addEventListener('input', function (e) {
-  var d = e.target.value.replace(/\D/g, '').slice(0, 11),
-    out = d;
-  if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
-  if (d.length > 7) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
-  e.target.value = out;
-});
+// Só nas páginas que têm o formulário (a política de privacidade e a 404 usam este arquivo pelo aviso de cookies).
+if (document.getElementById('enviar')) {
+  document.getElementById('whatsapp').addEventListener('input', function (e) {
+    var d = e.target.value.replace(/\D/g, '').slice(0, 11),
+      out = d;
+    if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length > 7) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+    e.target.value = out;
+  });
 
-function liberarBotao(btn) {
-  enviando = false;
-  btn.disabled = false;
-  btn.textContent = TEXTO_BOTAO;
-}
-
-document.getElementById('enviar').addEventListener('click', function () {
-  if (enviando) return;
-  limpar();
-  var dados = {
-    nome: document.getElementById('nome').value.trim(),
-    sobrenome: document.getElementById('sobrenome').value.trim(),
-    whatsapp: document.getElementById('whatsapp').value.trim(),
-    tipoProjeto: document.getElementById('tipoProjeto').value,
-    consentimento: document.getElementById('consentimento').checked,
-    website: document.getElementById('website').value,
-    captcha: captchaToken,
-    origem: origem(),
-  };
-  if (!dados.nome) {
-    erro('Por favor, informe seu nome.');
-    return;
-  }
-  if (dados.whatsapp.replace(/\D/g, '').length < 10) {
-    erro('Informe um WhatsApp válido com DDD.');
-    return;
-  }
-  if (!dados.consentimento) {
-    erro('É necessário aceitar a Política de Privacidade para continuar.');
-    return;
-  }
-  if (captchaLigado && !captchaToken) {
-    erro('Aguarde a verificação de segurança logo acima do botão e tente de novo.');
-    return;
+  function liberarBotao(btn) {
+    enviando = false;
+    btn.disabled = false;
+    btn.textContent = TEXTO_BOTAO;
   }
 
-  enviando = true;
-  var btn = document.getElementById('enviar');
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
+  document.getElementById('enviar').addEventListener('click', function () {
+    if (enviando) return;
+    limpar();
+    var dados = {
+      nome: document.getElementById('nome').value.trim(),
+      sobrenome: document.getElementById('sobrenome').value.trim(),
+      whatsapp: document.getElementById('whatsapp').value.trim(),
+      tipoProjeto: document.getElementById('tipoProjeto').value,
+      consentimento: document.getElementById('consentimento').checked,
+      website: document.getElementById('website').value,
+      captcha: captchaToken,
+      origem: origem(),
+    };
+    if (!dados.nome) {
+      erro('Por favor, informe seu nome.');
+      return;
+    }
+    if (dados.whatsapp.replace(/\D/g, '').length < 10) {
+      erro('Informe um WhatsApp válido com DDD.');
+      return;
+    }
+    if (!dados.consentimento) {
+      erro('É necessário aceitar a Política de Privacidade para continuar.');
+      return;
+    }
+    if (captchaLigado && !captchaToken) {
+      erro('Aguarde a verificação de segurança logo acima do botão e tente de novo.');
+      return;
+    }
 
-  var controle = window.AbortController ? new AbortController() : null;
-  var limite = setTimeout(function () {
-    if (controle) controle.abort();
-  }, 25000);
+    enviando = true;
+    var btn = document.getElementById('enviar');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
 
-  fetch('/api/lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(dados),
-    signal: controle ? controle.signal : undefined,
-  })
-    .then(function (r) {
-      clearTimeout(limite);
-      // O servidor respondeu: se não veio JSON, é falha do servidor, não da conexão.
-      return r.json().catch(function () {
-        return { ok: false, erro: 'Não foi possível enviar agora. Tente novamente em instantes.' };
-      });
+    var controle = window.AbortController ? new AbortController() : null;
+    var limite = setTimeout(function () {
+      if (controle) controle.abort();
+    }, 25000);
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+      signal: controle ? controle.signal : undefined,
     })
-    .then(function (res) {
-      liberarBotao(btn);
-      if (res && res.ok) {
-        registrarConversao(dados.tipoProjeto);
-        document.getElementById('cardForm').style.display = 'none';
-        document.getElementById('cardSucesso').style.display = 'block';
-        document.getElementById('cardSucesso').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
+      .then(function (r) {
+        clearTimeout(limite);
+        // O servidor respondeu: se não veio JSON, é falha do servidor, não da conexão.
+        return r.json().catch(function () {
+          return { ok: false, erro: 'Não foi possível enviar agora. Tente novamente em instantes.' };
+        });
+      })
+      .then(function (res) {
+        liberarBotao(btn);
+        if (res && res.ok) {
+          registrarConversao(dados.tipoProjeto);
+          document.getElementById('cardForm').style.display = 'none';
+          document.getElementById('cardSucesso').style.display = 'block';
+          document.getElementById('cardSucesso').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          reiniciarCaptcha();
+          erro((res && res.erro) || 'Não foi possível enviar agora. Tente novamente.');
+        }
+      })
+      .catch(function (e) {
+        clearTimeout(limite);
+        liberarBotao(btn);
         reiniciarCaptcha();
-        erro((res && res.erro) || 'Não foi possível enviar agora. Tente novamente.');
-      }
-    })
-    .catch(function (e) {
-      clearTimeout(limite);
-      liberarBotao(btn);
-      reiniciarCaptcha();
-      erro(
-        e && e.name === 'AbortError'
-          ? 'O envio demorou demais. Tente novamente ou fale conosco pelo WhatsApp.'
-          : 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.'
-      );
-    });
-});
+        erro(
+          e && e.name === 'AbortError'
+            ? 'O envio demorou demais. Tente novamente ou fale conosco pelo WhatsApp.'
+            : 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.'
+        );
+      });
+  });
+}

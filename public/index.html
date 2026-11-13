@@ -47,6 +47,20 @@
           "postalCode": "66035-190",
           "addressCountry": "BR"
         },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:30",
+            "closes": "19:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:30",
+            "closes": "14:00"
+          }
+        ],
         "areaServed": { "@type": "City", "name": "Belém" },
         "brand": { "@type": "Brand", "name": "Bartzen" },
         "parentOrganization": {
@@ -80,7 +94,9 @@
 
     <header class="hero">
       <picture class="hero-foto">
-        <source media="(max-width: 700px)" srcset="/img/painel-freijo-amb.jpg" />
+        <source media="(max-width: 760px)" type="image/webp" srcset="/img/painel-freijo-amb.webp" />
+        <source media="(max-width: 760px)" srcset="/img/painel-freijo-amb.jpg" />
+        <source type="image/webp" srcset="/img/ambiente-estar.webp" />
         <img src="/img/ambiente-estar.jpg" alt="Sala com painel de freijó, sofá claro e estante iluminada, projeto Bartzen" fetchpriority="high" />
       </picture>
 
@@ -253,7 +269,9 @@
       <div class="carrossel" id="carrossel-ambientes">
       <section class="tela tela-foto" id="ambientes" aria-labelledby="cozinhas-titulo">
         <picture class="tela-fundo">
+          <source media="(max-width: 760px)" type="image/webp" srcset="/img/cozinha-bartzen-amb.webp" />
           <source media="(max-width: 760px)" srcset="/img/cozinha-bartzen-amb.jpg" />
+          <source type="image/webp" srcset="/img/ambiente-cozinha.webp" />
           <img src="/img/ambiente-cozinha.jpg" alt="Cozinha com armários aéreos ocre, base escura e bancada clara iluminada" loading="lazy" />
         </picture>
         <div class="tela-texto anima">
@@ -264,7 +282,9 @@
 
       <section class="tela tela-foto tela-foto-direita" aria-labelledby="closets-titulo">
         <picture class="tela-fundo">
+          <source media="(max-width: 760px)" type="image/webp" srcset="/img/closet-bartzen-amb.webp" />
           <source media="(max-width: 760px)" srcset="/img/closet-bartzen-amb.jpg" />
+          <source type="image/webp" srcset="/img/ambiente-closet.webp" />
           <img src="/img/ambiente-closet.jpg" alt="Closet com portas de vidro e prateleiras iluminadas, integrado a um estar com piso de granilite" loading="lazy" />
         </picture>
         <div class="tela-texto anima">
@@ -276,7 +296,10 @@
 
       <section class="tela tela-dividida" aria-labelledby="salas-titulo">
         <div class="tela-dividida-foto">
-          <img src="/img/painel-freijo-amb.jpg" alt="Sala de estar com painel de freijó, arandelas e sofá claro" loading="lazy" />
+          <picture>
+            <source type="image/webp" srcset="/img/painel-freijo-amb.webp" />
+            <img src="/img/painel-freijo-amb.jpg" alt="Sala de estar com painel de freijó, arandelas e sofá claro" loading="lazy" />
+          </picture>
         </div>
         <div class="tela-dividida-texto anima">
           <h2 id="salas-titulo">Salas de estar</h2>
@@ -335,7 +358,10 @@
       </section>
 
       <section class="tela showroom" id="showroom" aria-labelledby="showroom-titulo">
-        <img src="/img/nicho-iluminado-amb.jpg" alt="Estante iluminada com fundo de pedra e mesa redonda com cadeiras ocre" loading="lazy" width="900" height="1124" />
+        <picture>
+          <source type="image/webp" srcset="/img/nicho-iluminado-amb.webp" />
+          <img src="/img/nicho-iluminado-amb.jpg" alt="Estante iluminada com fundo de pedra e mesa redonda com cadeiras ocre" loading="lazy" width="900" height="1124" />
+        </picture>
         <div class="showroom-texto anima">
           <h2 id="showroom-titulo">Visite o showroom</h2>
           <p>Ambientes montados, amostras de acabamentos e uma equipe de projetistas para começar o seu projeto.</p>
@@ -344,6 +370,11 @@
             Tv. Quintino Bocaiúva, 1093, Reduto<br />
             Belém, PA, 66035-190
           </address>
+          <dl class="horario">
+            <div><dt>Segunda a sexta</dt><dd>9h30 às 19h30</dd></div>
+            <div><dt>Sábado</dt><dd>9h30 às 14h</dd></div>
+            <div><dt>Domingo</dt><dd>fechado</dd></div>
+          </dl>
           <ul class="contatos">
             <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Tv.+Quintino+Bocai%C3%BAva%2C+1093%2C+Bel%C3%A9m+PA" target="_blank" rel="noopener">Ver no mapa</a></li>
             <li><a href="https://wa.me/559193844444" target="_blank" rel="noopener">WhatsApp (91) 9384-4444</a></li>
@@ -412,6 +443,8 @@
           <div id="cardSucesso" class="sucesso" style="display: none" role="status">
             <h3>Recebemos seu pedido</h3>
             <p>Um projetista fala com você pelo WhatsApp em breve para começar o seu projeto.</p>
+            <p class="sucesso-agora">Prefere adiantar a conversa?</p>
+            <a class="botao botao-whatsapp" href="https://wa.me/559193844444?text=Ol%C3%A1!%20Acabei%20de%20pedir%20um%20projeto%20pelo%20site%20da%20Bartzen." target="_blank" rel="noopener">Falar agora pelo WhatsApp</a>
           </div>
         </div>
       </section>
