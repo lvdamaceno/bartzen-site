@@ -278,18 +278,15 @@ p {
 .rodape {
   scroll-snap-align: end;
 }
-/* Desktop com altura suficiente: encaixe firme. Celular e telas baixas: encaixe solto, para as seções
-   mais longas (formulário, lista) rolarem normalmente. */
-html {
-  scroll-snap-type: y proximity;
-}
-@media (min-width: 761px) and (min-height: 700px) {
+/* Encaixe só no computador com mouse e tela alta o bastante. Em tela de toque (celular, tablet) a
+   rolagem fica livre: o encaixe deixava o dedo "preso" (pedido do usuário, 13/11/2026). */
+@media (min-width: 761px) and (min-height: 700px) and (hover: hover) and (pointer: fine) {
   html {
     scroll-snap-type: y mandatory;
   }
 }
 
-/* Transição leve ao entrar na seção (a classe "ativa" vem do novolayout.js). */
+/* Transição leve ao entrar na seção (a classe "ativa" vem do /js/telas.js). */
 .js .tela .anima {
   opacity: 0;
   transform: translateY(18px);
