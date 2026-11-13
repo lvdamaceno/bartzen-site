@@ -1,3 +1,9 @@
+// Prova do aceite (LGPD) que vai junto com o lead e fica guardada no card do Happy.
+// Ao mudar o texto da caixa no index.html ou a data da política em privacidade.html, atualize aqui também.
+const ACEITE_TEXTO =
+  "Autorizo a Casa Contente a entrar em contato comigo pelo WhatsApp ou telefone sobre este projeto, e li a Política de Privacidade.";
+const POLITICA_VERSAO = "julho de 2026";
+
 export default async function (req, res) {
   // Configuração ausente
   if (!process.env.KANBAN_URL || !process.env.KANBAN_TOKEN) {
@@ -42,7 +48,7 @@ export default async function (req, res) {
     });
   }
 
-  // ---- Repassa ao Apps Script ----
+  // ---- Repassa ao Happy (kanban dos planejados) ----
   try {
     const resp = await fetch(process.env.KANBAN_URL, {
       method: "POST",
@@ -56,7 +62,12 @@ export default async function (req, res) {
           nome,
           sobrenome,
           whatsapp,
-          tipoProjeto
+          tipoProjeto,
+          consentimento: {
+            aceito: true,
+            texto: ACEITE_TEXTO,
+            politica: POLITICA_VERSAO
+          }
         }
       })
     });
