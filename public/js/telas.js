@@ -23,3 +23,52 @@
     obs.observe(t);
   });
 })();
+
+// Carrossel dos ambientes (só no celular): os pontinhos mostram o cartão atual e levam até o cartão tocado.
+(function () {
+  var trilho = document.getElementById('carrossel-ambientes');
+  var pontos = document.querySelectorAll('.carrossel-pontos button');
+  if (!trilho || !pontos.length) return;
+  var cartoes = trilho.children;
+
+  function atual() {
+    var centro = trilho.scrollLeft + trilho.clientWidth / 2;
+    var melhor = 0;
+    var menor = Infinity;
+    for (var i = 0; i < cartoes.length; i++) {
+      var meio = cartoes[i].offsetLeft + cartoes[i].offsetWidth / 2;
+      var d = Math.abs(meio - centro);
+      if (d < menor) {
+        menor = d;
+        melhor = i;
+      }
+    }
+    return melhor;
+  }
+  function marcar() {
+    var i = atual();
+    pontos.forEach(function (p, k) {
+      if (k === i) p.setAttribute('aria-current', 'true');
+      else p.removeAttribute('aria-current');
+    });
+  }
+  var pendente = false;
+  trilho.addEventListener(
+    'scroll',
+    function () {
+      if (pendente) return;
+      pendente = true;
+      requestAnimationFrame(function () {
+        pendente = false;
+        marcar();
+      });
+    },
+    { passive: true }
+  );
+  pontos.forEach(function (p, k) {
+    p.addEventListener('click', function () {
+      var c = cartoes[k];
+      trilho.scrollTo({ left: c.offsetLeft - (trilho.clientWidth - c.offsetWidth) / 2, behavior: 'smooth' });
+    });
+  });
+})();

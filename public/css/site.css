@@ -394,6 +394,16 @@ p {
   color: rgba(246, 244, 240, 0.78);
 }
 
+/* ---------- Carrossel dos ambientes: só no celular. No computador, o contêiner some e cada ambiente
+   continua sendo uma tela cheia. ---------- */
+.carrossel-wrap,
+.carrossel {
+  display: contents;
+}
+.carrossel-pontos {
+  display: none;
+}
+
 /* ---------- Ambiente com foto de um lado e texto do outro ---------- */
 .tela-dividida {
   display: grid;
@@ -821,12 +831,115 @@ p {
     bottom: 18px;
     font-size: 13px;
   }
-  .tela-dividida {
-    display: flex;
+  /* Carrossel: cartões de foto lado a lado, deslizando na horizontal, com a beirada do próximo aparecendo. */
+  .carrossel-wrap {
+    display: block;
+    position: relative;
+    padding: 28px 0 64px;
   }
-  .tela-dividida-foto {
-    flex: 1;
-    min-height: 56svh;
+  .carrossel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 6vw;
+    padding: 0 6vw;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carrossel::-webkit-scrollbar {
+    display: none;
+  }
+  .carrossel > .tela {
+    flex: 0 0 88vw;
+    min-height: 0;
+    height: 78svh;
+    max-height: 680px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+  .carrossel .tela-texto {
+    padding: 0 22px 32px;
+  }
+  .carrossel .tela-texto h2,
+  .carrossel .tela-dividida-texto h2 {
+    font-size: 44px;
+    margin-bottom: 12px;
+  }
+  .carrossel .tela-texto p,
+  .carrossel .tela-dividida-texto p {
+    font-size: 16px;
+  }
+  .carrossel .legenda {
+    top: 16px;
+    bottom: auto;
+    left: 22px;
+    right: 22px;
+    font-size: 12.5px;
+  }
+  /* Salas de estar no carrossel: mesmo formato dos outros cartões (foto inteira, texto por cima). */
+  .carrossel .tela-dividida {
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: var(--wengue);
+  }
+  .carrossel .tela-dividida-foto {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+  }
+  .carrossel .tela-dividida::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(20, 15, 12, 0.85) 0%, rgba(20, 15, 12, 0.45) 40%, rgba(20, 15, 12, 0) 70%);
+  }
+  .carrossel .tela-dividida-texto {
+    position: relative;
+    z-index: 1;
+    padding: 0 22px 32px;
+  }
+  .carrossel .tela-dividida-texto h2 {
+    color: var(--linho);
+  }
+  .carrossel .tela-dividida-texto p {
+    color: rgba(246, 244, 240, 0.92);
+  }
+  .carrossel-pontos {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+  }
+  .carrossel-pontos button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .carrossel-pontos button::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    border-radius: 50%;
+    background: rgba(31, 25, 21, 0.25);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .carrossel-pontos button[aria-current='true']::before {
+    background: var(--freijo);
+    transform: scale(1.3);
   }
   .tela-dividida-texto {
     padding: 40px var(--margem) 56px;
