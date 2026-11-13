@@ -1,16 +1,16 @@
-/* Bartzen Belém — layout novo (em teste em /novolayout).
+/* Bartzen Belém: layout do site.
    Paleta tirada das fotos dos ambientes: granilite, wengué, freijó e o ocre dos armários e das cadeiras. */
 
 @font-face {
   font-family: 'Newsreader';
-  src: url('fontes/newsreader.woff2') format('woff2-variations');
+  src: url('/fontes/newsreader.woff2') format('woff2-variations');
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Jost';
-  src: url('fontes/jost.woff2') format('woff2-variations');
+  src: url('/fontes/jost.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

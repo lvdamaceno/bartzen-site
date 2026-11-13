@@ -23,6 +23,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// /novolayout foi a página de testes do layout atual: quem tiver o link antigo vai para a principal.
+app.get(/^\/novolayout(\/.*)?$/, (req, res) => res.redirect(301, "/"));
+
 // Só a pasta public/ vai para o navegador (o código do servidor e a node_modules não).
 app.use(express.static(path.join(__dirname, "public")));
 
