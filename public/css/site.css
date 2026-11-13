@@ -287,8 +287,10 @@ p {
 }
 /* Encaixe só no computador com mouse e tela alta o bastante. Em tela de toque (celular, tablet) a
    rolagem fica livre: o encaixe deixava o dedo "preso" (pedido do usuário, 13/11/2026). */
+/* Só na página principal (body.inicio): nas páginas de texto o único ponto de encaixe seria o rodapé,
+   e a rolagem ficava presa nele. */
 @media (min-width: 761px) and (min-height: 700px) and (hover: hover) and (pointer: fine) {
-  html {
+  html:has(body.inicio) {
     scroll-snap-type: y mandatory;
   }
 }
