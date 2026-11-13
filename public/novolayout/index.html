@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#1f1915" />
     <script>
+      document.documentElement.classList.add('js');
       (function () {
         try {
           if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -188,7 +189,8 @@
     </header>
 
     <main>
-      <section class="marca" aria-labelledby="marca-titulo">
+      <section class="tela marca" aria-labelledby="marca-titulo">
+        <div class="anima">
         <h2 id="marca-titulo" class="sr">Sobre a Bartzen</h2>
         <p class="marca-texto">
           Há mais de 30 anos, a Bartzen desenha móveis a partir das medidas, da rotina e do estilo de quem vai viver neles.
@@ -199,42 +201,45 @@
           <div><dt>200 mil m²</dt><dd>de fábrica do Grupo K1</dd></div>
           <div><dt>Modulação 100% editável</dt><dd>cada peça nas medidas reais do ambiente</dd></div>
         </dl>
+        </div>
       </section>
 
-      <section class="ambientes" id="ambientes" aria-labelledby="ambientes-titulo">
-        <h2 id="ambientes-titulo" class="titulo-secao">Ambientes</h2>
+      <section class="tela tela-foto" id="ambientes" aria-labelledby="cozinhas-titulo">
+        <picture class="tela-fundo">
+          <source media="(max-width: 760px)" srcset="img/cozinha-bartzen-amb.jpg" />
+          <img src="img/ambiente-cozinha.jpg" alt="Cozinha com armários aéreos ocre, base escura e bancada clara iluminada" loading="lazy" />
+        </picture>
+        <div class="tela-texto anima">
+          <h2 id="cozinhas-titulo">Cozinhas</h2>
+          <p>O coração da casa, desenhado para o seu jeito de cozinhar e receber, com aproveitamento total do espaço e iluminação pensada para o trabalho na bancada.</p>
+        </div>
+      </section>
 
-        <article class="destaque">
-          <img src="img/cozinha-bartzen-amb.jpg" alt="Cozinha com armários aéreos ocre, base escura e bancada clara iluminada" loading="lazy" width="900" height="1126" />
-          <div class="destaque-texto">
-            <h3>Cozinhas</h3>
-            <p>O coração da casa, desenhado para o seu jeito de cozinhar e receber. Aproveitamento total do espaço e iluminação pensada para o trabalho na bancada.</p>
-          </div>
-        </article>
+      <section class="tela tela-foto tela-foto-direita" aria-labelledby="closets-titulo">
+        <picture class="tela-fundo">
+          <source media="(max-width: 760px)" srcset="img/closet-bartzen-amb.jpg" />
+          <img src="img/ambiente-closet.jpg" alt="Closet com portas de vidro e prateleiras iluminadas, integrado a um estar com piso de granilite" loading="lazy" />
+        </picture>
+        <div class="tela-texto anima">
+          <h2 id="closets-titulo">Closets</h2>
+          <p>Organização sob medida para cada peça, com portas de vidro, iluminação e acabamentos que deixam o closet tão bonito quanto prático.</p>
+        </div>
+        <p class="legenda">Ambientes Bartzen e Casa Contente na Casa Liv 2026, em Belém.</p>
+      </section>
 
-        <article class="destaque destaque-inverso">
-          <img src="img/closet-bartzen-amb.jpg" alt="Closet com portas de vidro, prateleiras de madeira e iluminação de LED" loading="lazy" width="900" height="1126" />
-          <div class="destaque-texto">
-            <h3>Closets</h3>
-            <p>Organização sob medida para cada peça, com portas de vidro, iluminação e acabamentos que deixam o closet tão bonito quanto prático.</p>
-          </div>
-        </article>
+      <section class="tela tela-dividida" aria-labelledby="salas-titulo">
+        <div class="tela-dividida-foto">
+          <img src="img/painel-freijo-amb.jpg" alt="Sala de estar com painel de freijó, arandelas e sofá claro" loading="lazy" />
+        </div>
+        <div class="tela-dividida-texto anima">
+          <h2 id="salas-titulo">Salas de estar</h2>
+          <p>Painéis, estantes e racks que organizam a convivência e escondem a tecnologia, com a madeira como protagonista.</p>
+        </div>
+      </section>
 
-        <article class="destaque">
-          <img src="img/painel-freijo-amb.jpg" alt="Sala de estar com painel de freijó, arandelas e sofá claro" loading="lazy" width="900" height="1125" />
-          <div class="destaque-texto">
-            <h3>Salas de estar</h3>
-            <p>Painéis, estantes e racks que organizam a convivência e escondem a tecnologia, com a madeira como protagonista.</p>
-          </div>
-        </article>
-
-        <figure class="panorama">
-          <img src="img/ambiente-closet.jpg" alt="Ambiente integrado de closet e estar com piso de granilite, tapete orgânico e marcenaria em madeira" loading="lazy" width="1600" height="843" />
-          <figcaption>Ambiente Bartzen e Casa Contente na Casa Liv 2026, em Belém.</figcaption>
-        </figure>
-
-        <div class="lista-ambientes">
-          <h3>Projetamos todos os ambientes da casa</h3>
+      <section class="tela lista-ambientes" aria-labelledby="lista-titulo">
+        <div class="lista-grade anima">
+          <h2 id="lista-titulo">Projetamos todos os ambientes da casa</h2>
           <ul>
             <li><strong>Cozinhas</strong><span>funcionais, do dia a dia ao jantar com amigos</span></li>
             <li><strong>Dormitórios</strong><span>de casal, solteiro e infantil</span></li>
@@ -250,7 +255,8 @@
         </div>
       </section>
 
-      <section class="processo" id="como-funciona" aria-labelledby="processo-titulo">
+      <section class="tela processo" id="como-funciona" aria-labelledby="processo-titulo">
+        <div class="anima">
         <h2 id="processo-titulo" class="titulo-secao">Como funciona</h2>
         <ol>
           <li>
@@ -270,11 +276,12 @@
             <p>A equipe própria da Casa Contente instala tudo em Belém e acompanha até a entrega.</p>
           </li>
         </ol>
+        </div>
       </section>
 
-      <section class="showroom" id="showroom" aria-labelledby="showroom-titulo">
+      <section class="tela showroom" id="showroom" aria-labelledby="showroom-titulo">
         <img src="img/nicho-iluminado-amb.jpg" alt="Estante iluminada com fundo de pedra e mesa redonda com cadeiras ocre" loading="lazy" width="900" height="1124" />
-        <div class="showroom-texto">
+        <div class="showroom-texto anima">
           <h2 id="showroom-titulo">Visite o showroom</h2>
           <p>Ambientes montados, amostras de acabamentos e uma equipe de projetistas para começar o seu projeto.</p>
           <address>
@@ -290,13 +297,13 @@
         </div>
       </section>
 
-      <section class="form-sec" id="projeto" aria-labelledby="form-titulo">
-        <div class="form-intro">
+      <section class="tela form-sec" id="projeto" aria-labelledby="form-titulo">
+        <div class="form-intro anima">
           <h2 id="form-titulo">Solicite seu projeto</h2>
           <p>Deixe seu nome e WhatsApp. Um projetista entra em contato para entender o seu ambiente e agendar a visita ao showroom, sem compromisso.</p>
         </div>
 
-        <div class="form-corpo">
+        <div class="form-corpo anima">
           <div id="cardForm">
             <div class="campos-2">
               <div class="campo">
@@ -532,5 +539,6 @@
     </footer>
 
     <script src="/js/script.js"></script>
+    <script src="novolayout.js"></script>
   </body>
 </html>
